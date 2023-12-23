@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Class</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: #000;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .left-column,
+        .right-column {
+            max-width: 650px; /* Adjust the max-width as needed */
+            width: 60%;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #000;
+            /* Black color for text */
+        }
+
+        .left-column {
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right-column {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .right-column form {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+        }
+        
+      th {
+      background-color: black;
+    }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button,
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .left-column table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left-column">
+            <h2>Time Table</h2>
+            <table id="scheduleTable">
+                <thead>
+                    <tr style="width: 10px;">
+                        <th>Tutor Name</th>
+                        <th>Sec</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Timings</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="right-column">
+            <h1>Schedule A Class</h1>
+            <form id="scheduleForm">
+                <label for="tutorNameInput">Tutor Name:</label>
+                <input type="text" id="tutorNameInput" name="T_name" required>
+
+                <label for="idInput">Sec:</label>
+                <input type="text" id="idInput" name="Sec" required>
+
+                <label for="studentNameInput">Subject:</label>
+                <input type="text" id="studentNameInput" name="Subject" required>
+
+                <label for="dateInput">Date:</label>
+                <input type="date" id="dateInput" name="Date_Class">
+
+                <label for="timeInput">Timings:</label>
+                <input type="time" id="timeInput" name="Timings">
+
+                <label for="linkInput">Link:</label>
+                <input type="text" id="linkInput" name="Link">
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Your existing JavaScript code
+        document.addEventListener('DOMContentLoaded', () => {
+    const scheduleForm = document.getElementById('scheduleForm');
+    const scheduleTableBody = document.querySelector('#scheduleTable tbody');
+
+    scheduleForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      // Get form data
+      const formData = new FormData(scheduleForm);
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+      try {
+        // Send data to the server
+        const response = await fetch('http://localhost:3000/schd', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formObject),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+
+        // Clear form inputs
+        scheduleForm.reset();
+
+        // Refresh the table with updated data
+        await refreshScheduleTable();
+      } catch (error) {
+        console.error('Error adding schedule:', error.message);
+      }
+    });
+
+    async function refreshScheduleTable() {
+      try {
+        // Fetch schedule data from the server
+        const response = await fetch('http://localhost:3000/schd');
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Clear existing table rows
+        scheduleTableBody.innerHTML = '';
+
+        // Populate the table with schedule data
+        data.forEach(entry => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${entry.T_name}</td>
+            <td>${entry.Sec}</td>
+            <td>${entry.Subject}</td>
+            <td>${entry.Date_Class}</td>
+            <td>${entry.Timings}</td>
+            <td>${entry.Link}</td>
+          `;
+          scheduleTableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching schedule data:', error.message);
+      }
+    }
+
+    // Initial load of the schedule table
+    refreshScheduleTable();
+
+    window.filterTable = function(section) {
+      const rows = scheduleTableBody.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const sectionCell = row.getElementsByTagName('td')[1];
+
+        if (section === 'all' || (sectionCell && sectionCell.textContent.trim() === section)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    };
+  });
+    </script>
+</body>
+
+</html>

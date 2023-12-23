@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: #fff;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            width: 100px; /* Adjust the size as needed */
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Teacher Login</h1>
+
+    <form onsubmit="return validateForm('teacher')">
+        <img src="/Users/rakesh/Desktop/ENIGMA/profile_blank.jpeg" alt="Login Image"> <!-- Add your image path here -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="validateAndLogin()">Login</button>
+    </form>
+
+    <script>
+        function validateAndLogin() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            if (email === '' || password === '') {
+                alert('Please enter both email and password.');
+                return;
+            }
+
+            if (!email.endsWith('@teacher.com')) {
+                alert('Invalid teacher email address.');
+                return;
+            }
+
+            // Additional validation logic can be added here if needed
+
+            // If validation is successful, navigate to the teacher_lob.html page
+            window.location.href = "/Users/rakesh/Desktop/ENIGMA/teacher_lob.html";
+        }
+    </script>
+
+</body>
+</html>

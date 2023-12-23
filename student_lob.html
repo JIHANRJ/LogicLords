@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Stackers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #3498db;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 30px 40px; /* Increased padding for larger boxes */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid #fff;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+
+        main {
+            flex: 1;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .footer {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Study Stackers</h1>
+
+    <nav>
+        <a href="#profile">Profile</a>
+        <a href="student_lob.html">Home</a>
+        <a href="/Users/rakesh/Desktop/ENIGMA/stud_tt.html">Join Class</a>
+        <a href="/Users/rakesh/Desktop/ENIGMA/chat_box.html">Chat</a>
+    </nav>
+
+    <main>
+        <div class="content">
+            <p>
+                This page is your portal to knowledge, your launchpad to academic success. Here, you'll find resources
+                that ignite your curiosity, challenge your thinking, and guide you on your unique educational journey.
+                We believe every student is a vibrant spark, brimming with potential, and we're here to fan that spark
+                into a raging flame.
+                Dive into interactive lessons, explore engaging materials, and connect with supportive mentors who share
+                your passion for learning. This is your space to ask questions, experiment, and discover the joy of
+                intellectual pursuit. Let's embark on this journey together, fueled by curiosity, driven by dedication,
+                and forever inspired by the boundless possibilities of knowledge. Welcome to your learning sanctuary!
+            </p>
+        </div>
+        <div class="content">
+            <div class="marquee">
+                <p>
+                    Ignite the Spark, Embrace the Challenge: Students, the Architects of Tomorrow.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>Study Stackers Private Limited<br>
+            Address: Bangalore, Karnataka<br>
+            Contact: 080-26891526<br>
+
+            For any queries/suggestions/feedback:
+            Contact 9448909494<br>
+            Mail: random@gmail.com</p>
+    </div>
+
+</body>
+
+</html>

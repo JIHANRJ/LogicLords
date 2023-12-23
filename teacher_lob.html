@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Stackers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #3498db;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+
+        main {
+            flex: 1;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .footer {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Study Stackers</h1>
+
+    <nav>
+        <a href="#profile">Profile</a>
+        <a href="C:\Users\Vignesh\OneDrive\Desktop\ENIGMA_MAIN\login.html">Home</a>
+        <a href="/Users/rakesh/Desktop/ENIGMA/schd_teach.html">Schedule Class</a>
+        <a href="/Users/rakesh/Desktop/ENIGMA/file_upload.html">Upload Timetable</a>
+        <a href="/Users/rakesh/Desktop/ENIGMA/chat_box.html">Chat</a>
+    </nav>
+
+    <main>
+        <p>
+            Calling all passionate educators! This is your haven, your hub for inspiration and collaboration. As teachers, we hold the remarkable power to shape young minds, to awaken potential, and to ignite a love for learning that lasts a lifetime. This space is designed to honor your dedication, support your growth, and empower you to become the incredible educators you already are.
+        </p>
+
+        <p>
+            Find a treasure trove of resources at your fingertips: lesson plans that spark creativity, innovative teaching strategies, and a vibrant community of peers ready to share their own experiences and insights. Connect with mentors who will guide you, challenge you, and celebrate your successes.
+        </p>
+        <div class="content">
+            <div class="marquee">
+                <p>
+                    Inspiring Brilliance, Nurturing Potential: Teachers Light the Way."
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>
+            Study Stackers<br>
+            Address: Bangalore, Karnataka<br>
+            Contact: 080-26891526<br>
+            For any queries/suggestions/feedback:
+            Contact 9448909494<br>
+            Mail: random@gmail.com
+        </p>
+    </div>
+
+</body>
+
+</html>

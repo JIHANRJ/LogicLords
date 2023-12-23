@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Chat Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3498db;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 400px;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #messageDisplay {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow-y: scroll;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        nav {
+            background-color: #3498db;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 30px 40px; /* Increased padding for larger boxes */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+            margin: 5px;
+            box-sizing: border-box;
+            border: 1px solid #fff;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#profile">Profile</a>
+        <a href="student_lob.html">Home</a>
+        <a href="#joinClass">Join Class</a>
+        <a href="student_chat.html">Chat</a>
+    </nav>
+
+    <h1>Chat Page</h1>
+
+    <textarea id="messageDisplay" readonly></textarea>
+    <textarea id="messageInput" placeholder="Type your message"></textarea>
+    <button onclick="sendMessage()">Send Message</button>
+
+    <script>
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+            document.getElementById('messageDisplay').value += message + '\n';
+            document.getElementById('messageInput').value = '';
+            window.opener.postMessage(message, '*');
+        }
+
+        window.addEventListener('message', function (event) {
+            var message = event.data;
+            document.getElementById('messageDisplay').value += message + '\n';
+        });
+    </script>
+
+</body>
+
+</html>
